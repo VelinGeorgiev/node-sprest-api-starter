@@ -14,3 +14,5 @@ const authService: AuthService = new AuthService(config, logger);
 
 const api = new Api(helloService, authService, logger);
 api.createServer();
+
+export default api;
