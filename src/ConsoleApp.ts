@@ -1,8 +1,16 @@
-class ConsoleApp {
+import { ILogger } from './ILogger';
+import { ConsoleLogger } from './ConsoleLogger';
 
-    constructor() {
-        console.log('Welcome from my console app!');
+export class ConsoleApp {
+
+    constructor(
+        private logger: ILogger = new ConsoleLogger('info')
+    ) { }
+
+    public run(): void {
+        this.logger.info('ConsoleApp running');
     }
 }
 
-module.exports = new ConsoleApp();
+const app = new ConsoleApp();
+app.run();

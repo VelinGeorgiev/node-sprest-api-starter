@@ -4,6 +4,7 @@ import { ILogger } from './ILogger';
 import { ConsoleLogger } from './ConsoleLogger';
 import { DevConfig } from './DevConfig';
 import { HelloService } from './services/HelloService';
+import { AuthService } from './services/AuthService';
 import { Api } from './Api';
 import { BearerStrategy } from "passport-azure-ad";
 import * as sinon from 'sinon';
@@ -13,8 +14,9 @@ const logger: ILogger = new ConsoleLogger('info');
 const config: IConfig = new DevConfig();
 
 const helloService: HelloService = new HelloService();
+const authService: AuthService = new AuthService(config, logger);
 
-const api = new Api(helloService, config, logger, '3002');
+const api = new Api(helloService, authService, logger, '3002');
 const server = api.createServer();
 
 describe('Api e2e tests', () => {
@@ -55,7 +57,7 @@ describe('Api e2e tests', () => {
     // let serialize = sinon.stub(passport, 'serializeUser').returns(() => {});
     // let deserialize = sinon.stub(passport, 'deserializeUser').returns(() => {});
 
-    sinon.stub(BearerStrategy.prototype, 'jwtVerify').yields(null, true, '', () => { });;
+    sinon.stub(BearerStrategy.prototype, 'jwtVerify').yields(null, true, '', () => { });
     
     requestServer.get('/api/secured')
       .set('Authorization', 'Bearer abc')
