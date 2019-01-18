@@ -1,5 +1,5 @@
-import { IConfig } from '../IConfig';
-import { ILogger } from '../ILogger';
+import { IConfig } from '../config/IConfig';
+import { ILogger } from '../logger/ILogger';
 import { BearerStrategy } from "passport-azure-ad";
 
 export class AuthService {

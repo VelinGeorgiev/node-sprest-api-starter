@@ -1,5 +1,5 @@
-import { ILogger } from './ILogger';
-import { ConsoleLogger } from './ConsoleLogger';
+import { ILogger } from './logger/ILogger';
+import { ConsoleLogger } from './logger/ConsoleLogger';
 
 export class ConsoleApp {
 

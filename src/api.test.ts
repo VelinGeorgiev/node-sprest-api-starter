@@ -1,8 +1,8 @@
 import * as request from 'supertest';
-import { IConfig } from './IConfig';
-import { ILogger } from './ILogger';
-import { ConsoleLogger } from './ConsoleLogger';
-import { DevConfig } from './DevConfig';
+import { IConfig } from './config/IConfig';
+import { ILogger } from './logger/ILogger';
+import { ConsoleLogger } from './logger/ConsoleLogger';
+import { DevConfig } from './config/DevConfig';
 import { HelloService } from './services/HelloService';
 import { AuthService } from './services/AuthService';
 import { Api } from './Api';
@@ -10,7 +10,7 @@ import { BearerStrategy } from "passport-azure-ad";
 import * as sinon from 'sinon';
 //import * as passport from "passport";
 
-const logger: ILogger = new ConsoleLogger('info');
+const logger: ILogger = new ConsoleLogger('');
 const config: IConfig = new DevConfig();
 
 const helloService: HelloService = new HelloService();

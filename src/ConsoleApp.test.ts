@@ -1,5 +1,5 @@
 import { ConsoleApp } from './ConsoleApp';
-import { ConsoleLogger } from './ConsoleLogger';
+import { ConsoleLogger } from './logger/ConsoleLogger';
 import * as sinon from "sinon";
 
 describe('ConsoleApp tests', () => {

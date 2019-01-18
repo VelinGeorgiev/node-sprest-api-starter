@@ -1,7 +1,7 @@
 import * as passport from "passport";
 import * as restify from "restify";
 import * as restifyPlugins from "restify-plugins";
-import { ILogger } from './ILogger';
+import { ILogger } from './logger/ILogger';
 import { HelloService } from './services/HelloService';
 import { AuthService } from './services/AuthService';
 

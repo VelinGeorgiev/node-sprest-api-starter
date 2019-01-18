@@ -1,10 +1,10 @@
 
 import { HelloService } from './services/HelloService';
 import { AuthService } from './services/AuthService';
-import { ConsoleLogger } from './ConsoleLogger';
-import { ILogger } from './ILogger';
-import { IConfig } from './IConfig';
-import { DevConfig } from './DevConfig';
+import { ConsoleLogger } from './logger/ConsoleLogger';
+import { ILogger } from './logger/ILogger';
+import { IConfig } from './config/IConfig';
+import { DevConfig } from './config/DevConfig';
 import { Api } from './Api'; 
 
 const logger: ILogger = new ConsoleLogger('info');

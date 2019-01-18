@@ -1,7 +1,7 @@
 import {AuthService} from './AuthService';
 import * as sinon from "sinon";
-import { DevConfig } from '../DevConfig';
-import { ConsoleLogger } from '../ConsoleLogger';
+import { DevConfig } from '../config/DevConfig';
+import { ConsoleLogger } from '../logger/ConsoleLogger';
 
 describe('AuthService tests', () => {
 
@@ -22,7 +22,7 @@ describe('AuthService tests', () => {
     const callbackFunc = (a: any, b: any) => { return logger.info(`${a}, ${b}`) };
 
     authService.verifyUser('abc', callbackFunc);
-    
+
     expect(loggerSpy.calledWith('null, abc')).toEqual(true);
   });
 });
