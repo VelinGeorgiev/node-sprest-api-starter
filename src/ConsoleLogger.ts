@@ -2,7 +2,7 @@ import { ILogger } from './ILogger';
 
 export class ConsoleLogger implements ILogger {
 
-    constructor(private loggingLevel: string = undefined) {
+    constructor(private loggingLevel: string) {
 
     }
 

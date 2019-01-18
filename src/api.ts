@@ -1,13 +1,14 @@
 import * as passport from "passport";
+import { BearerStrategy } from "passport-azure-ad";
 import * as restify from "restify";
 import * as restifyPlugins from "restify-plugins";
-import { AuthService } from './services/AuthService';
-import { HelloService } from './services/HelloService';
 import { ILogger } from './ILogger';
+import { HelloService } from './services/HelloService';
+import { IConfig } from './IConfig';
 
 export class Api {
 
-    constructor(private helloService: HelloService, private authService: AuthService, private logger: ILogger) {
+    constructor(private helloService: HelloService, private config: IConfig, private logger: ILogger, private port: string) {
     }
 
     public createServer(): any {
@@ -16,19 +17,25 @@ export class Api {
         const server = restify.createServer({ name: 'Azure Active Directroy with Node.js Demo' });
 
         // middleware
-        passport.use(this.authService.getAuthenticationStrategy());
+        passport.use(new BearerStrategy({
+            identityMetadata: this.config.identityMetadata,
+            clientID: this.config.clientID
+        }, (token: any, done: Function) => { 
+            return done(null, token); 
+        }));
+
         server.use(restifyPlugins.authorizationParser());
         server.use(passport.initialize());
         server.use(passport.session());
 
         // routing
         server.get('/', this.helloService.sayHello);
-        server.get('/api/secured', passport.authenticate('oauth-bearer', { session: false }), this.helloService.secured);
+        server.get('/api/secured', passport.authenticate('oauth-bearer', { session: false }), this.helloService.sayHelloSecurely);
 
 
-        server.listen(process.env.PORT || 3000);
+        server.listen(process.env.PORT || this.port);
 
-        this.logger.info('Server running http://localhost:3000');
+        this.logger.info(`Server running http://localhost:${process.env.PORT || this.port}`); 
 
         return server;
     }

@@ -1,28 +1,14 @@
 import * as request from 'supertest';
-import { IConfig } from './IConfig';
-import { ILogger } from './ILogger';
-import { ConsoleLogger } from './ConsoleLogger';
-import { DevConfig } from './DevConfig';
-import { HelloService } from './services/HelloService';
-import { Api } from './Api';
 import { BearerStrategy } from "passport-azure-ad";
-import * as sinon from 'sinon';
+import server from './main';
+import * as sinon from "sinon";
 //import * as passport from "passport";
 
-const logger: ILogger = new ConsoleLogger('info');
-const config: IConfig = new DevConfig();
-
-const helloService: HelloService = new HelloService();
-
-const api = new Api(helloService, config, logger, '3002');
-const server = api.createServer();
-
-describe('Api e2e tests', () => {
+describe('main e2e tests', () => {
 
   let requestServer: any;
 
   beforeAll(() => {
-
     requestServer = request(server);
   });
 

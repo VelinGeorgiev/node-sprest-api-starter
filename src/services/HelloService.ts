@@ -2,15 +2,14 @@ export class HelloService {
 
     public sayHello(_: any, res: any, next: any): any {
 
-        res.json({ message: `Hello from Node.js API v1! Setting works>? = ${process.env.abc}` });
+        res.json({ message: `Hello from Node.js API v1! process.env.abc = ${process.env.abc}` });
 
         next();
     }
 
-    public secured(_: any, res: any, next: any): any {
+    public sayHelloSecurely(req: any, res: any, next: any): any {
 
-        //console.log(res);
-        res.json({ message: 'Secure response from Node.js API endpoint' });
+        res.json({ message: 'Secure response from Node.js API endpoint', user: req.user.name });
 
         return next();
     }
