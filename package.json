@@ -39,7 +39,8 @@
     "lint": "tslint -t stylish --project \"tsconfig.json\"",
     "test": "jest --coverage --forceExit",
     "test:watch": "jest --watch  --coverage --coverageReporters text",
-    "start": "node build/src/main.js"
+    "start": "node build/src/main.js",
+    "console" : "node build/src/consoleapp.js"
   },
   "author": "Velin Georgiev <github@velingeorgiev.info>",
   "license": "Apache-2.0",
